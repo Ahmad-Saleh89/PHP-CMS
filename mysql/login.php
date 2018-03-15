@@ -1,20 +1,3 @@
-<?php 
-    if(isset($_POST['submit'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-    }
-
-    $connection = mysqli_connect('localhost', 'root', 'root', 'loginapp', '8889');
-    if($connection){
-        echo "we are connected";
-    }else{
-        die("Database connection failed");
-    }
-
-?>
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +10,7 @@
 <body>
     <div class="container" style=padding-top:50px;>
         <div class="col-sm-6">
-            <form action="login.php" method="post">
+            <form action="login_create.php" method="post">
                 <div class="form-group">
                  <label for="username">User Name</label>
                   <input type="text" class="form-control" name="username" placeholder="User Name">
@@ -40,8 +23,6 @@
             </form>
         </div>
     </div>
-
-
 
 </body>
 </html>
