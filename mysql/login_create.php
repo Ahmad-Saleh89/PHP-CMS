@@ -16,6 +16,8 @@
      
         if(!$result) {
             die('Querry Failed' . mysqli_error());
+        }else{
+            echo "<h2>Your Name and Password have been successfully added to our database!!</h2>";
         }
     }
 
