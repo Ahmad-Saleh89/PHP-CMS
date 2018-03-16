@@ -2,9 +2,7 @@
 <?php include "functions.php"; ?>
 
 <?php
-    if(isset($_POST['submit'])) {
-      UpdateTable();
-    }
+    updateTable();
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +29,7 @@
                 <div class="form-group">
                     <select name="id" id="">
                     <?php
-                        showAllData();
+                        showId();
                     ?>
                     </select>
                 </div>
