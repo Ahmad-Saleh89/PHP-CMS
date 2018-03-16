@@ -22,7 +22,7 @@
 <body>
     <div class="container" style=padding-top:50px;>
         <div class="col-sm-12">
-            
+            <h3 class="text-center">This is users table fetched from the database</h3>
             <?php
                 while($row = mysqli_fetch_assoc($result)){
                 ?>
