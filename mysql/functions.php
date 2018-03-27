@@ -16,8 +16,8 @@ function createRow(){
         $hashFormat = "$2y$10$";
         $salt = "ichosecodingcozitshard";
         $hashF_and_salt = $hashFormat . $salt;
-
         $password = crypt($password, $hashF_and_salt);
+ 
         // Insert Values into users table in the database:
         $query = "INSERT INTO  users(username,password) ";
         $query .= "VALUES ('$username','$password')";
