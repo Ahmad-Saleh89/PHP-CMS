@@ -40,7 +40,20 @@ if(isset($_SESSION['message'])){
     echo $_SESSION['message'];
 }
 ?>
+<br>
+<?php 
+class Dog {
+    var $eye_color = "brown";
+    var $weight = 70;
+    var $fur_color = "gray";
+    function showAll(){
+        echo $this->eye_color . "<br>" . $this->weight . "<br> " . $this->fur_color;
+    }
+}
 
+$pitbull = new Dog();
+$pitbull->showAll();
+?>
     
 </body>
 </html>
