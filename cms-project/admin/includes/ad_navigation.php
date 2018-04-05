@@ -49,7 +49,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-bookmark"></i> Categories</a>
+                        <a href="categories.php"><i class="fa fa-fw fa-bookmark"></i> Categories</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-users"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
@@ -62,7 +62,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="blank-page.html"><i class="fa fa-fw fa-pencil"></i> Comments</a>
                     </li>
                     <li>
