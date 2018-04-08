@@ -21,23 +21,9 @@
                     </div>
 
                     <div class="col-xs-6">
-                    <?php 
-                        // //// Add Category
-                        if(isset($_POST['submit'])){
-                            $cat_title = $_POST['cat_title'];
-                            if($cat_title == "" || empty($cat_title)){
-                                echo "This field should not be empty!";
-                            }else{
-                                $query = "INSERT INTO categories(cat_title) ";
-                                $query .= "VALUE('{$cat_title}') ";
 
-                                $create_category_query = mysqli_query($connection, $query);
-                                if(!$create_category_query){
-                                    die('Query Failed' . mysqli_error($connection));
-                                }
-                            }
-                        }
-                    ?>
+                    <?php insert_categories(); ?>
+
                     <!-- Add Category - FORM -->
                         <form action="" method="post">
                             <div class="form-group">
@@ -77,18 +63,7 @@
                         } 
                     ?>
 
-                    <?php 
-                    // Edit Category
-                    if(isset($_POST['edit'])){
-                        $the_cat_title = $_POST['cat_title'];
-
-                    $query = "UPDATE categories SET cat_title = '{$the_cat_title}' WHERE cat_id = {$cat_id} ";
-                    $edit_query = mysqli_query($connection, $query);
-                        if(!$edit_query){
-                            die("Editing Failed" . mysqli_error($connection));
-                        }
-                    }
-                ?>
+                    <?php edit_category(); ?>
 
                     </div> 
 
@@ -120,16 +95,7 @@
                                 </tr>
                                 <?php } ?> <!-- /End while loop -->
 
-                                <?php 
-                                    // Delete Category
-                                    if(isset($_GET['delete'])){
-                                      $get_cat_id = $_GET['delete'];
-
-                                    $query = "DELETE FROM categories WHERE cat_id = {$get_cat_id} ";
-                                    $delete_query = mysqli_query($connection, $query);
-                                    header("Location: categories.php");
-                                    }
-                                ?>
+                                <?php delete_categrory(); ?>
 
                             </tbody>
                         </table>
