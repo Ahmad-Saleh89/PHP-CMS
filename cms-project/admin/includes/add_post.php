@@ -23,6 +23,8 @@
 
     $create_post_query = mysqli_query($connection, $query);
 
+    confirmQuery($create_post_query);
+
   }
 
 ?>
