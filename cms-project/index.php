@@ -21,6 +21,7 @@
                         $post_title = $row['post_title'];
                         $post_author = $row['post_author'];
                         $post_date = $row['post_date'];
+                        $post_all_categories = $row['post_category'];
                         $post_image = $row['post_image'];
                         $post_content = $row['post_content'];
                         $post_tags = $row['post_tags'];
@@ -33,7 +34,15 @@
                     <p class="lead">
                         by <a href="index.php"><?php echo $post_author; ?></a>
                     </p>
-                    <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
+                    <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?> 
+                    under 
+                    <?php 
+                        // Convert categories string into an array
+                        $categories_array = explode(" ", $post_all_categories);
+                        foreach($categories_array as $key => $category){
+                            echo "<a href='#'>$category</a> ";
+                        }
+                    ?></p>
                     <p>Tags: <?php echo $post_tags ?></p>
                     <hr>
                     <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">

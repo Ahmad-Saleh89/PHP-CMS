@@ -13,12 +13,15 @@
     $post_date = date('d-m-y');
     $post_comment_count = 4;
 
+    $post_category = $_POST['post_category'];
+    $post_category = implode(" ", $post_category);
+
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "INSERT INTO posts(post_category_id, post_title, post_author,
+    $query = "INSERT INTO posts(post_category_id, post_category, post_title, post_author,
     post_date, post_image, post_content, post_tags, post_comment_count, post_status) ";
 
-    $query .= "VALUES({$post_category_id}, '{$post_title}', '{$post_author}', now(),
+    $query .= "VALUES({$post_category_id}, '{$post_category}', '{$post_title}', '{$post_author}', now(),
     '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_comment_count}', '{$post_status}' ) ";
 
     $create_post_query = mysqli_query($connection, $query);
@@ -37,8 +40,25 @@
   </div>
 
   <div class="form-group">
-    <label for="post_category">Post Category Id</label>
+    <label for="post_category_id">Post Category Id</label>
     <input type="text" class="form-control" name="post_category_id">
+  </div>
+
+  <div class="form-group">
+    <p>Post Category</p>
+      <?php
+        $query = "SELECT * FROM categories";
+        $select_all_categories = mysqli_query($connection, $query);
+
+        confirmQuery($select_all_categories);
+
+        while($row = mysqli_fetch_assoc($select_all_categories)){
+          // $cat_id = $row['cat_id'];
+          $cat_title = $row['cat_title'];
+          echo "<input type='checkbox' name='post_category[]' value='$cat_title'> $cat_title <br>";
+        }
+
+      ?>
   </div>
 
   <div class="form-group">
