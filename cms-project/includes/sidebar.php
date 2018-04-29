@@ -18,12 +18,12 @@
 
 <!-- Blog Categories Well -->
 <div class="well">
-    <h4>Blog Categories</h4>
+    <h4>Categories</h4>
     <div class="row">
         <div class="col-lg-12">
 
             <?php 
-                $query = "SELECT * FROM categories LIMIT 5";
+                $query = "SELECT * FROM categories LIMIT 10";
                 $select_sidebar_categories = mysqli_query($connection, $query);
             ?>
 
@@ -31,7 +31,7 @@
                 <?php 
                     while($row = mysqli_fetch_assoc($select_sidebar_categories)){
                         $cat_title = $row['cat_title'];
-                        echo "<li><a href='#'>{$cat_title}</a></li>";
+                        echo "<li><a href='category.php?category=$cat_title'>{$cat_title}</a></li>";
                     }
                 ?>
             </ul>

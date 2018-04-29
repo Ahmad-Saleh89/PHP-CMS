@@ -14,8 +14,12 @@
                     My Blogs
                 </h1>
                 <?php 
+                  if(isset($_GET['category'])){
+                    $get_category_title = $_GET['category'];
+                  }
+
                 // select data from posts table in database:
-                    $query = "SELECT * FROM posts";
+                    $query = "SELECT * FROM posts WHERE post_category LIKE '%$get_category_title%'";
                     $select_all_posts_query = mysqli_query($connection, $query);
                     while($row = mysqli_fetch_assoc($select_all_posts_query)){
                         $post_id = $row['post_id'];
@@ -41,7 +45,7 @@
                         // Convert categories string into an array
                         $categories_array = explode(" ", $post_all_categories);
                         foreach($categories_array as $key => $category){
-                            echo "<a href='category.php?category=$category'>$category</a> ";
+                            echo "<a href='#'>$category</a> ";
                         }
                     ?></p>
                     <p>Tags: <?php echo $post_tags ?></p>
