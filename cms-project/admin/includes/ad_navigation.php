@@ -63,7 +63,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-pencil"></i> Comments</a>
+                        <a href="comments.php"><i class="fa fa-fw fa-pencil"></i> Comments</a>
                     </li>
                     <li>
                         <a href="index-rtl.html"><i class="fa fa-fw fa-user"></i> Profile</a>
