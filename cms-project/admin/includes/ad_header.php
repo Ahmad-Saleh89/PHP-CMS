@@ -1,6 +1,18 @@
-<?php ob_start(); ?>
 <?php include "../includes/db.php" ?>
 <?php include "functions.php" ?>
+<?php ob_start(); ?>
+<?php session_start(); ?>
+<?php 
+// Check User Role to allow access to admin area
+if(!isset($_SESSION['user_role'])){
+    header("Location: ../index.php");
+}else{
+    if($_SESSION['user_role'] !== 'admin'){
+        header("Location: ../index.php");
+    }
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +25,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>CMS Project | Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

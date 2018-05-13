@@ -86,6 +86,7 @@
         <!-- /.row -->
 
         <hr>
+    </div> <!-- container -->
 
   <!-- Footer -->
 <?php include "includes/footer.php"; ?>
