@@ -21,6 +21,9 @@
                 </div>
                 <!-- /.row -->
 
+                <!-- Admin Dashboard widgets -->
+                <?php include "admin_widgets.php"; ?>
+
             </div>
             <!-- /.container-fluid -->
 
