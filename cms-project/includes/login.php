@@ -28,10 +28,13 @@ if(isset($_POST['login'])){
   }
 
   if($username === $db_username && $password === $db_user_pw){
+    $_SESSION['user_id'] = $db_user_id;
     $_SESSION['username'] = $db_username;
     $_SESSION['firstname'] = $db_user_fname;
     $_SESSION['lastname'] = $db_user_lname;
     $_SESSION['user_role'] = $db_user_role;
+    $_SESSION['user_email'] = $db_user_email;
+    $_SESSION['user_pw'] = $db_user_pw;
 
     header("Location: ../admin");
   }else{
