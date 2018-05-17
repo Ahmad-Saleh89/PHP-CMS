@@ -2,7 +2,7 @@
 
 <body>
 
-	<div id="wrapper">
+	<div id="wrapper" style="width: 1300px">
 
 		<!-- Navigation -->
 		<?php include "includes/ad_navigation.php" ?>

@@ -6,12 +6,12 @@
       <th>Id</th>
       <th>Author</th>
       <th>Title</th>
-      <th>Category Id</th>
+      <th><small>Category Id</small></th>
       <th>Category</th>
       <th>Status</th>
       <th>Image</th>
       <th>Tags</th>
-      <th>Comments</th>
+      <th><small>Comments</small></th>
       <th>Date</th>
       <th>Edit</th>
       <th>Delete</th>
