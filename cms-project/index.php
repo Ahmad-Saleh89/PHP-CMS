@@ -28,9 +28,7 @@
                         $post_tags = $row['post_tags'];
                         $post_status = $row['post_status'];
 
-                        if($post_status !== 'Published'){
-                            echo "No posts to be displayed";
-                        }else{
+                        if($post_status == 'Published'){
 
                             ?>
                             <!-- Blog Post -->

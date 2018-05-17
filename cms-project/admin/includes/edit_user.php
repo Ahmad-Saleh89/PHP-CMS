@@ -48,6 +48,8 @@
     $update_user = mysqli_query($connection, $query);
 
     confirmQuery($update_user);
+
+    echo "User updated successfully: " . "<a href='users.php'>Veiw Users</a>";
   }
   
 ?>

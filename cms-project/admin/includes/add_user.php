@@ -25,6 +25,8 @@
 
     confirmQuery($add_user_query);
 
+    echo "User added successfully: " . "<a href='users.php'>Veiw Users</a>";
+
   }
 
 ?>
