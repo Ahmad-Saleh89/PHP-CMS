@@ -1,7 +1,7 @@
-<div class="col-md-4">
+<div class="col-lg-4">
 
     <!-- Blog Search Well -->
-    <div class="well">
+    <div class="well col-sm-6 col-lg-12">
         <h4>Blog Search</h4>
         <form action="search.php" method="post">
             <div class="input-group">
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Blog Categories Well -->
-    <div class="well">
+    <div class="well col-sm-6 col-lg-12">
         <h4>Categories</h4>
         <div class="row">
             <div class="col-lg-12">
@@ -44,8 +44,8 @@
     <!-- Side Widget Well -->
     <?php include "widget.php" ?>
 
-    <!-- Blog Search Well -->
-    <div class="well">
+    <!-- Log in -->
+    <div class="well col-sm-6 col-lg-12">
         <h4>Login</h4>
         <form action="includes/login.php" method="post">
             <div class="form-group">
