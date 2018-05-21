@@ -49,7 +49,7 @@
 
     confirmQuery($update_user);
 
-    echo "User updated successfully: " . "<a href='users.php'>Veiw Users</a>";
+    echo "<p class='bg-success'>User updated successfully: " . "<a href='users.php'>Veiw Users</a></p>";
   }
   
 ?>

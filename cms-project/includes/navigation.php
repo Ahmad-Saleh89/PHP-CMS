@@ -9,20 +9,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Ahmad Saleh</a>
+                <a class="navbar-brand" href="index.php">CMS Project</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <?php 
-                        $query = "SELECT * FROM categories";
-                        $select_all_categories_query = mysqli_query($connection, $query);
-                        while($row = mysqli_fetch_assoc($select_all_categories_query)){
-                            $cat_title = $row['cat_title'];
-                            echo "<li><a href='#'>{$cat_title}</a></li>";
-                        }
-                    ?>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+                        <ul class="dropdown-menu navbar-inverse">
+                        <?php 
+                            $query = "SELECT * FROM categories";
+                            $select_all_categories_query = mysqli_query($connection, $query);
+                            while($row = mysqli_fetch_assoc($select_all_categories_query)){
+                                $cat_title = $row['cat_title'];
+                                echo "<li><a href='category.php?category={$cat_title}' style='color: #9d9d9d'>{$cat_title}</a></li>";
+                            }
+                        ?>
+                        </ul>
+                    </li>
+
                     <li><a href="admin">Admin</a></li>
+
+                    <!-- Enable Edit post button if logged in -->
+                    <?php 
+                        if(isset($_SESSION['user_role'])){
+                            if(isset($_GET['p_id']) and $_SESSION['user_role'] !== 'subscriber'){
+                                $the_post_id = $_GET['p_id'];
+                                echo "<li><a href='admin/admin_posts.php?source=edit_post&post_id={$the_post_id}'>Edit Post</a></li>";
+                            }
+                        }
+                    
+                    ?>
 
                 </ul>
             </div>
