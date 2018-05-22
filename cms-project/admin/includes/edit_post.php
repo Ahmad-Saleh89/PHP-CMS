@@ -111,7 +111,7 @@
         if($post_status == 'Draft'){
           echo "<option value='Published'>Published</option>";
         }else{
-          echo "<option value='admin'>Draft</option>";
+          echo "<option value='Draft'>Draft</option>";
         }
       ?>
     </select>

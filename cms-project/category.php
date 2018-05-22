@@ -10,14 +10,18 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-                <h1 class="page-header">
-                    My Blogs
-                </h1>
                 <?php 
                   if(isset($_GET['category'])){
                     $get_category_title = $_GET['category'];
                   }
 
+                ?>
+
+                <h1 class="page-header">
+                  <?php echo $get_category_title . " "; ?> related blogs
+                </h1>
+
+                <?php
                 // select data from posts table in database:
                     $query = "SELECT * FROM posts WHERE post_category LIKE '%$get_category_title%'";
                     $select_all_posts_query = mysqli_query($connection, $query);
@@ -30,6 +34,10 @@
                         $post_image = $row['post_image'];
                         $post_content = substr($row['post_content'], 0, 200);
                         $post_tags = $row['post_tags'];
+                        $post_status = $row['post_status'];
+
+
+                        if($post_status == 'Published'){
 
                 ?>
                     <!-- Blog Post -->
@@ -59,7 +67,9 @@
                     Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
     
                     <hr>
-                <?php } ?> <!-- Ending while loop -->
+                <?php } // End if Statement
+                
+                } ?> <!-- Ending while loop -->
 
 
 
