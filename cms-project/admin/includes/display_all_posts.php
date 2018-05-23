@@ -78,7 +78,7 @@
         echo"<td><input class='checkbox' type='checkbox' name='checkBox[]' value='{$post_id}'></td>";
         echo"<td>$post_id</td>";
         echo"<td>$post_author</td>";
-        echo"<td>$post_title</td>";
+        echo"<td><a href='../post.php?p_id={$post_id}'>$post_title</a></td>";
         echo"<td>$post_category</td>";
         echo"<td>$post_status</td>";
         echo"<td><img width='70' src='../images/$post_image'></td>";

@@ -7,7 +7,7 @@
         <!-- Navigation -->
         <?php include "includes/ad_navigation.php" ?>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="width: 650px">
 
             <div class="container-fluid">
 

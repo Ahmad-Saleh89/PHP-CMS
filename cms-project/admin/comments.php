@@ -7,7 +7,7 @@
 		<!-- Navigation -->
 		<?php include "includes/ad_navigation.php" ?>
 
-		<div id="page-wrapper">
+		<div id="page-wrapper" style="min-width: 800px; max-width: 1300px">
 
 			<div class="container-fluid">
 
