@@ -45,7 +45,7 @@
     <?php include "widget.php" ?>
 
     <!-- Log in -->
-    <div class="well col-sm-6 col-lg-12">
+    <div class="well col-sm-6 col-lg-12" style="height: 250px">
         <h4>Login</h4>
         <form action="includes/login.php" method="post">
             <div class="form-group">
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="Password">
             </div>
-            <div>
+            <div class="col-xs-4 pull-left" style="padding-left: 0">
                 <span class="input-group-btn">
                     <button name="login" class="btn btn-default" type="submit">
                         Login <span class="glyphicon glyphicon-log-in"></span>
@@ -62,6 +62,11 @@
                 </span>
             </div>
         </form>
+        <div class="col-xs-6 pull-right">
+            <p>Not a member?</p>
+            <a href="registration.php" class="btn btn-primary">Register Now</a>
+        </div>
+
         <!-- /.input-group -->
     </div>
 

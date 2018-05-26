@@ -27,6 +27,9 @@ if(isset($_POST['login'])){
     $db_user_role = $row['user_role'];
   }
 
+  // I think: crypt function here is reversing the hashed pw into its original value
+  $password = crypt($password, $db_user_pw);
+
   if($username === $db_username && $password === $db_user_pw){
     $_SESSION['user_id'] = $db_user_id;
     $_SESSION['username'] = $db_username;
