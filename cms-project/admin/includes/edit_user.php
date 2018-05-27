@@ -5,22 +5,29 @@
   // Fetch Data for a specific user
   $query = "SELECT * FROM users WHERE user_id = $get_user_id ";
   $select_user_by_id = mysqli_query($connection, $query);
-  while($row = mysqli_fetch_assoc($select_user_by_id)){
+    $row = mysqli_fetch_assoc($select_user_by_id);
     $username = $row['username'];
-    $user_password = $row['user_password'];
+    $db_user_pw = $row['user_password'];
     $user_firstname = $row['user_firstname'];
     $user_lastname = $row['user_lastname'];
     $user_email = $row['user_email'];
     $user_role = $row['user_role'];
-  }
+
 
   if(isset($_POST['update_user'])){
     $username = $_POST['username'];
     $user_firstname = $_POST['user_firstname'];
     $user_lastname = $_POST['user_lastname'];
     $user_email = $_POST['user_email'];
-    $user_password = $_POST['user_password'];
     $user_role = $_POST['user_role'];
+    
+    $user_password = $_POST['user_password'];
+
+    if(!empty($user_password)){
+      $user_password = password_hash($user_password, PASSWORD_DEFAULT, array('cost' => 10));
+    }else{
+      $user_password = $db_user_pw;
+    }
 
     // $user_image = $_FILES['upload_img']['name'];
     // $user_image_temp = $_FILES['upload_img']['tmp_name'];
@@ -84,7 +91,7 @@
 
 <div class="form-group">
   <label for="user_password">Password</label>
-  <input type="password" class="form-control" name="user_password" value="<?php echo $user_password; ?>">
+  <input type="password" class="form-control" name="user_password" autocomplete="off" placeholder="***********">
 </div>
 
 <div class="form-group">

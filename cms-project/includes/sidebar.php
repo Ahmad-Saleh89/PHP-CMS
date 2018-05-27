@@ -49,7 +49,7 @@
         <h4>Login</h4>
         <form action="includes/login.php" method="post">
             <div class="form-group">
-                <input type="text" name="username" class="form-control" placeholder="Username">
+                <input type="text" name="userId" class="form-control" placeholder="Username/Email">
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="Password">

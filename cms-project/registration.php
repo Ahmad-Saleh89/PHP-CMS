@@ -11,21 +11,11 @@
             $username = mysqli_real_escape_string($connection, $username);
             $user_email = mysqli_real_escape_string($connection, $user_email);
             $password = mysqli_real_escape_string($connection, $password);
-    
-            $query = "SELECT randSalt FROM users";
-            $select_randsalt_query = mysqli_query($connection, $query);
-    
-            if(!$select_randsalt_query){
-                die("Query Failed" . mysqli_error($connection));
-            }
-    
-            $row = mysqli_fetch_array($select_randsalt_query);
-            $salt = $row['randSalt'];
-    
-            $password = crypt($password, $salt);
-    
+
+            $hashed_pw = password_hash($password, PASSWORD_DEFAULT, array('cost' => 10));
+
             $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
-            $query .= "VALUES('{$username}', '{$user_email}', '{$password}', 'subscriber')";
+            $query .= "VALUES('{$username}', '{$user_email}', '{$hashed_pw}', 'subscriber')";
             $register_user_query = mysqli_query($connection, $query);
             if(!$register_user_query) {
                 die("Query Failed " . mysqli_error($connection) . ' ' . mysqli_errno($connection));

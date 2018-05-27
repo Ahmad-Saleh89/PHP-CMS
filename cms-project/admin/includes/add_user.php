@@ -5,13 +5,12 @@
     $user_firstname = $_POST['user_firstname'];
     $user_lastname = $_POST['user_lastname'];
     $user_email = $_POST['user_email'];
+    $user_role = $_POST['user_role'];
+
+    $user_password = password_hash($user_password, PASSWORD_DEFAULT, array('cost' => 10));
 
     // $user_image = $_FILES['upload_img']['name'];
     // $user_image_temp = $_FILES['upload_img']['tmp_name'];
-
-    
-    $user_role = $_POST['user_role'];
-
 
     // move_uploaded_file($post_image_temp, "../images/$post_image");
 

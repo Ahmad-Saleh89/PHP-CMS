@@ -3,13 +3,13 @@
 
 <?php 
 if(isset($_POST['login'])){
-  $username = $_POST['username'];
+  $user_id = $_POST['userId'];
   $password = $_POST['password'];
 
-  $username = mysqli_real_escape_string($connection, $username);
+  $user_id = mysqli_real_escape_string($connection, $user_id);
   $password = mysqli_real_escape_string($connection, $password);
 
-  $query = "SELECT * FROM users WHERE username = '{$username}' ";
+  $query = "SELECT * FROM users WHERE username = '{$user_id}' OR user_email = '{$user_id}'";
   $select_user_query = mysqli_query($connection, $query);
 
   if(!$select_user_query){
@@ -27,10 +27,7 @@ if(isset($_POST['login'])){
     $db_user_role = $row['user_role'];
   }
 
-  // I think: crypt function here is reversing the hashed pw into its original value
-  $password = crypt($password, $db_user_pw);
-
-  if($username === $db_username && $password === $db_user_pw){
+  if(password_verify($password, $db_user_pw)){
     $_SESSION['user_id'] = $db_user_id;
     $_SESSION['username'] = $db_username;
     $_SESSION['firstname'] = $db_user_fname;
