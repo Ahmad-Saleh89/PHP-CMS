@@ -11,19 +11,19 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
                 <?php 
-                  if(isset($_GET['category'])){
-                    $get_category_title = $_GET['category'];
+                  if(isset($_GET['author'])){
+                    $get_author_name = $_GET['author'];
                   }
 
                 ?>
 
                 <h1 class="page-header">
-                  <?php echo $get_category_title . " "; ?> related blogs
+                  <?php echo $get_author_name . "'s "; ?>  blogs
                 </h1>
 
                 <?php
                 // select data from posts table in database:
-                    $query = "SELECT * FROM posts WHERE post_category LIKE '%$get_category_title%'";
+                    $query = "SELECT * FROM posts WHERE post_author = '{$get_author_name}' ";
                     $select_all_posts_query = mysqli_query($connection, $query);
                     while($row = mysqli_fetch_assoc($select_all_posts_query)){
                         $post_id = $row['post_id'];

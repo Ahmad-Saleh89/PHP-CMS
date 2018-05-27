@@ -37,7 +37,7 @@
                         <?php echo $post_title; ?>
                     </h2>
                     <p class="lead">
-                        by <a href="index.php"><?php echo $post_author; ?></a>
+                        by <a href="author.php?author=<?php echo $post_author; ?>"><?php echo $post_author; ?></a>
                     </p>
                     <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?> 
                     under 
@@ -81,6 +81,8 @@
                             if(!$create_comment_query){
                               die('QUERY FAILED' . mysqli_error($connection));  
                             }
+
+                            $msg = "Your comment will show up after it gets approved";
     
                             // Increase post comments count by 1
                             $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
@@ -88,8 +90,11 @@
                             $update_comments_count_query = mysqli_query($connection, $query);
                         }else{
                             echo "<script>alert('Fields cannot be empty')</script>";
+                            $msg = '';
                         }
-                    }           
+                    }else{
+                        $msg = '';
+                    }         
                 ?>
 
                 <!-- Comments Form -->
@@ -109,6 +114,8 @@
                             <textarea class="form-control" name="comment_content" rows="3"></textarea>
                         </div>
                         <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
+                        <br>
+                        <p class='text-center bg-success'><?php echo $msg; ?></p>
                     </form>
                 </div>
 
