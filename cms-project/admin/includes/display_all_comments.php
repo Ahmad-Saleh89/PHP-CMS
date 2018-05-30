@@ -35,8 +35,21 @@
       echo"<td>$comment_author</td>";
       echo"<td>$comment_content</td>";
       echo"<td>$comment_email</td>";
-      echo"<td>$comment_status</td>";
+      ?>
       
+      <td style="color: 
+      <?php 
+        if($comment_status == 'Approved'){
+          echo 'green';
+        }elseif($comment_status == 'Denied'){
+          echo 'red';
+        }else{
+          echo 'gray';
+        }
+      
+      ?>" ><?php echo $comment_status; ?></td>
+
+      <?php
       // Fetching the related post title from database
       $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
       $select_post_query = mysqli_query($connection, $query);
