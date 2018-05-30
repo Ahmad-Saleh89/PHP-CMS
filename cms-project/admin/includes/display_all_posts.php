@@ -22,6 +22,29 @@
           $query = "DELETE FROM posts WHERE post_id = '$box_id'";
           $delete_post = mysqli_query($connection, $query);
           break;
+
+        case 'clone';
+          $query = "SELECT * FROM posts WHERE post_id = '{$box_id}' ";
+          $select_post_query = mysqli_query($connection, $query);
+
+          while($row = mysqli_fetch_array($select_post_query)){
+            $post_author = $row['post_author'];
+            $post_title = $row['post_title'];
+            $post_category = $row['post_category'];
+            $post_image = $row['post_image'];
+            $post_content = $row['post_content'];
+            $post_tags = $row['post_tags'];
+            $post_date = $row['post_date'];
+          }
+
+          $query = "INSERT INTO posts(post_category, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) ";
+          $query .= "VALUES('{$post_category}', '{$post_title}','{$post_author}', now(), '{$post_image}','{$post_content}','{$post_tags}', 0 , 'Draft')";
+            $copy_query = mysqli_query($connection, $query);
+
+            if(!$copy_query){
+              die("QUERY FAILED" . mysqli_error($connection));
+            }
+          break; 
       }
     }
   }
@@ -35,6 +58,7 @@
       <option value="Published">Publish</option>
       <option value="Draft">Draft</option>
       <option value="delete">Delete</option>
+      <option value="clone">Clone</option>
     </select>
     <input type="submit" name="submit" class="btn btn-success pull-right" value="Apply">
   </div>
@@ -61,7 +85,7 @@
     <tbody>
 
       <?php 
-        $query = "SELECT * FROM posts";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC";
         $select_posts = mysqli_query($connection, $query);
         while($row = mysqli_fetch_assoc($select_posts)){
           $post_id = $row['post_id'];
@@ -80,7 +104,18 @@
         echo"<td>$post_author</td>";
         echo"<td><a href='../post.php?p_id={$post_id}'>$post_title</a></td>";
         echo"<td>$post_category</td>";
-        echo"<td>$post_status</td>";
+        ?>
+
+        <td style="color: 
+        <?php 
+        if($post_status == 'Published'){
+          echo 'green';
+        }else{
+          echo 'gray';
+        }
+        ?>"><?php echo $post_status; ?></td>
+
+        <?php
         echo"<td><img width='70' src='../images/$post_image'></td>";
         echo"<td>$post_tags</td>";
         echo"<td>$post_comment_count</td>";
