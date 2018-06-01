@@ -20,6 +20,13 @@
                   if(isset($_GET['p_id'])){
                     $get_post_id = $_GET['p_id'];
 
+                    $post_view_query = "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = $get_post_id";
+                    $send_query = mysqli_query($connection, $post_view_query);
+
+                    if(!$send_query){
+                        die("Query Failed" . mysqli_error($connection));
+                    }
+
                     $query = "SELECT * FROM posts WHERE post_id = $get_post_id";
                     $select_this_post = mysqli_query($connection, $query);
                     $row = mysqli_fetch_assoc($select_this_post);
@@ -56,7 +63,11 @@
                     <!-- <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a> -->
     
                     <hr>
-                <?php } // End if statement ?>
+                <?php } else{
+
+                    header("Location: index.php");
+                    
+                } ?>
 
                 <!-- Blog Comments -->
 

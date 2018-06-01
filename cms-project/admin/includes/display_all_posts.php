@@ -80,6 +80,7 @@
         <th>Date</th>
         <th>Edit</th>
         <th>Delete</th>
+        <th>Views</th>
       </tr>
     </thead>
     <tbody>
@@ -97,6 +98,7 @@
           $post_tags = $row['post_tags'];
           $post_comment_count = $row['post_comment_count'];
           $post_date = $row['post_date'];
+          $post_views_count = $row['post_views_count'];
 
       echo "<tr>";
         echo"<td><input class='checkbox' type='checkbox' name='checkBox[]' value='{$post_id}'></td>";
@@ -121,7 +123,8 @@
         echo"<td>$post_comment_count</td>";
         echo"<td>$post_date</td>";
         echo"<td><a href='admin_posts.php?source=edit_post&post_id={$post_id}'>Edit</a></td>";
-        echo"<td><a href='admin_posts.php?delete={$post_id}'>Delete</a></td>";
+        echo"<td><a onClick=\"javascript: return confirm('Are you sure you want to delete this post') \" href='admin_posts.php?delete={$post_id}'>Delete</a></td>";
+        echo"<td>$post_views_count</td>";
       echo "</tr>";
       } // End while loop ?>
     </tbody>
