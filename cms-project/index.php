@@ -14,8 +14,30 @@
                     My Blogs
                 </h1>
                 <?php 
+                    
+                    //  Pagination system
+                    if(isset($_GET['page'])){
+                       $page = $_GET['page'];
+                       if($page == 1){
+                            $posts_offset = 0;
+                            }else{
+                                $posts_offset = ($page * 5) - 5;
+                            }
+                    }else{
+                        $page = 0;
+                        $posts_offset = 0;
+                    }
+
+
+                    // Detecting how many Published posts we have for Pagination purpose
+                    $posts_count_query = "SELECT * FROM posts WHERE post_status = 'Published' ";
+                    $find_count = mysqli_query($connection, $posts_count_query);
+                    $count = mysqli_num_rows($find_count);
+
+                    $count = ceil($count / 5);
+
                 // select data from posts table in database:
-                    $query = "SELECT * FROM posts ORDER BY post_id DESC";
+                    $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY post_id DESC LIMIT $posts_offset, 5 ";
                     $select_all_posts_query = mysqli_query($connection, $query);
                     while($row = mysqli_fetch_assoc($select_all_posts_query)){
                         $post_id = $row['post_id'];
@@ -64,17 +86,17 @@
 
                  } ?> <!-- Ending while loop -->
 
-
-
-
                 <!-- Pager -->
                 <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
+                    <?php
+                        for($i = 1; $i <= $count; $i++){ 
+                            if($i == $page){
+                                echo "<li style='margin-right: 8px'><a href='index.php?page={$i}' class='active_link'>{$i}</a></li>";
+                            }else{
+                                echo "<li style='margin-right: 8px'><a href='index.php?page={$i}'>{$i}</a></li>";
+                            }
+                        }
+                    ?>
                 </ul>
 
             </div>
