@@ -56,7 +56,13 @@
   
       $row = mysqli_fetch_assoc($select_post_query);
       $related_post_title = $row['post_title'];
-      echo"<td><a href='../post.php?p_id=$comment_post_id'>$related_post_title</a></td>";
+      if($related_post_title == NULL){
+        $related_post_title = "This post doesn't exist anymore";
+        echo"<td>$related_post_title</td>";
+      }else{
+        echo"<td><a href='../post.php?p_id=$comment_post_id'>$related_post_title</a></td>";
+      }
+
         
       echo"<td>$comment_date</td>";
       echo"<td><a href='comments.php?approve={$comment_id}'>Approve</a></td>";

@@ -72,4 +72,38 @@
         <?php } //End while loop
     }
 
+    // Detect Users online
+    function online(){
+        global $connection;
+
+        $session = session_id();
+        $current_time = time();
+        $time_live = 180;
+        $time_out = $current_time - $time_live;
+    
+        $query = "SELECT * FROM online_users WHERE session = '$session' ";
+        $send_query = mysqli_query($connection, $query);
+        
+        // Count how many sessions in online_users table
+        $count_sessions = mysqli_num_rows($send_query);
+    
+        if($count_sessions == NULL){
+            $insert_session = "INSERT INTO online_users(session, time) VALUES('$session', '$current_time')";
+            $insert_session_query = mysqli_query($connection, $insert_session);
+    
+        }else{
+            $update_session = "UPDATE online_users SET time = '$current_time' WHERE session = '$session' ";
+            $update_session_query = mysqli_query($connection, $update_session);
+        }
+    
+        $online = "SELECT * FROM online_users WHERE time > '$time_out'";
+        $online_query = mysqli_query($connection, $online);
+        return $count_users = mysqli_num_rows($online_query);
+    
+        // Delete offline users from online_users table
+        $offline = "DELETE FROM online_users WHERE time < '$time_out'";
+        $offline_query = mysqli_query($connection, $offline);
+    }
+
+
 ?>

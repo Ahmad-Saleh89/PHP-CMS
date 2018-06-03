@@ -14,7 +14,9 @@
 
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
-
+        <li>
+            <a href='' style='color: #5cb85c'>Online: <?php echo online(); ?></a>
+        </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['firstname'] . ' '. $_SESSION['lastname']; ?> <b class="caret"></b></a>
             <ul class="dropdown-menu">
