@@ -95,14 +95,14 @@
             $update_session = "UPDATE online_users SET time = '$current_time' WHERE session = '$session' ";
             $update_session_query = mysqli_query($connection, $update_session);
         }
+
+        // Delete offline users from online_users table
+        $offline = "DELETE FROM online_users WHERE time < '$time_out'";
+        $offline_query = mysqli_query($connection, $offline);
     
         $online = "SELECT * FROM online_users WHERE time > '$time_out'";
         $online_query = mysqli_query($connection, $online);
         return $count_users = mysqli_num_rows($online_query);
-    
-        // Delete offline users from online_users table
-        $offline = "DELETE FROM online_users WHERE time < '$time_out'";
-        $offline_query = mysqli_query($connection, $offline);
     }
 
 
