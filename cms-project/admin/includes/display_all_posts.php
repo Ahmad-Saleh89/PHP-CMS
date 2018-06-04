@@ -109,18 +109,25 @@
         ?>
 
         <td style="color: 
-        <?php 
-        if($post_status == 'Published'){
-          echo 'green';
-        }else{
-          echo 'gray';
-        }
-        ?>"><?php echo $post_status; ?></td>
+          <?php 
+          if($post_status == 'Published'){
+            echo 'green';
+          }else{
+            echo 'gray';
+          }
+          ?>"><?php echo $post_status; ?>
+        </td>
 
         <?php
         echo"<td><img width='70' src='../images/$post_image'></td>";
         echo"<td>$post_tags</td>";
-        echo"<td>$post_comment_count</td>";
+
+        // Comments count query
+        $count_query = "SELECT * FROM comments WHERE comment_post_id = '{$post_id}' ";
+        $send_count_query = mysqli_query($connection, $count_query);
+        $count_comments = mysqli_num_rows($send_count_query);
+
+        echo"<td><a href='comments.php?source=post_comments&p_id={$post_id}'>$count_comments</a></td>";
         echo"<td>$post_date</td>";
         echo"<td><a href='admin_posts.php?source=edit_post&post_id={$post_id}'>Edit</a></td>";
         echo"<td><a onClick=\"javascript: return confirm('Are you sure you want to delete this post') \" href='admin_posts.php?delete={$post_id}'>Delete</a></td>";

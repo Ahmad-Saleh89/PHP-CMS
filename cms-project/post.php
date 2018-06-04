@@ -95,10 +95,10 @@
 
                             $msg = "Your comment will show up after it gets approved";
     
-                            // Increase post comments count by 1
-                            $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
-                            $query .= "WHERE post_id = $get_post_id";
-                            $update_comments_count_query = mysqli_query($connection, $query);
+                            // Increment post comments count by 1
+                            // $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
+                            // $query .= "WHERE post_id = $get_post_id";
+                            // $update_comments_count_query = mysqli_query($connection, $query);
                         }else{
                             echo "<script>alert('Fields cannot be empty')</script>";
                             $msg = '';
