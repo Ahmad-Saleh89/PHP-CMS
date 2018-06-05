@@ -123,7 +123,7 @@
         echo"<td>$post_tags</td>";
 
         // Comments count query
-        $count_query = "SELECT * FROM comments WHERE comment_post_id = '{$post_id}' ";
+        $count_query = "SELECT * FROM comments WHERE comment_post_id = $post_id ";
         $send_count_query = mysqli_query($connection, $count_query);
         $count_comments = mysqli_num_rows($send_count_query);
 

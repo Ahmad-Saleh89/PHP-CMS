@@ -63,11 +63,10 @@
         echo"<td><a href='../post.php?p_id=$comment_post_id'>$related_post_title</a></td>";
       }
 
-        
       echo"<td>$comment_date</td>";
       echo"<td><a href='comments.php?approve={$comment_id}'>Approve</a></td>";
       echo"<td><a href='comments.php?deny={$comment_id}'>Deny</a></td>";
-      echo"<td><a href='comments.php?delete={$comment_id}'>Delete</a></td>";
+      echo"<td><a onClick=\"javascript: return confirm('Are you sure you want to delete this comment') \" href='comments.php?delete={$comment_id}'>Delete</a></td>";
     echo "</tr>";
     } // End while loop ?>
   </tbody>
