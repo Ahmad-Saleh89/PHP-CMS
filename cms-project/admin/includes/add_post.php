@@ -35,11 +35,11 @@
 
 ?>
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data" style='max-width: 1000px'>
 
   <div class="form-group">
     <label for="title">Post Title</label>
-    <input type="text" class="form-control" name="title">
+    <input type="text" class="form-control" name="title" style='max-width: 400px'>
   </div>
 
   <div class="form-group">
@@ -59,9 +59,21 @@
       ?>
   </div>
 
-  <div class="form-group">
-    <label for="author">Post Author</label>
-    <input type="text" class="form-control" name="author">
+  <div class="form-group" style="width: 150px">
+    <select name="author" class="form-control">
+      <option value="author">Post Author</option>
+      <?php 
+        $query = "SELECT * FROM users";
+        $select_user = mysqli_query($connection, $query);
+        confirmQuery($select_user);
+        while($row = mysqli_fetch_assoc($select_user)){
+          $firstName = $row['user_firstname'];
+          $lastName = $row['user_lastname'];
+          echo "<option value='$firstName $lastName'>$firstName $lastName</option>";
+        }
+      ?>
+
+    </select>
   </div>
 
   <div class="form-group" style="width: 150px">
@@ -79,10 +91,10 @@
 
   <div class="form-group">
     <label for="post_tags">Post Tags</label>
-    <input type="text" class="form-control" name="post_tags">
+    <input type="text" class="form-control" name="post_tags" style='max-width: 400px'>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" style='max-width: 700px'>
     <label for="post_content">Post Content</label>
     <textarea type="text" class="form-control" name="post_content" id="editor" cols="30" rows="10">
     </textarea>

@@ -1,4 +1,35 @@
-<!-- Display all posts table in the admin dashboard area -->
+<?php include "includes/ad_header.php"; ?>
+
+<body>
+
+	<div id="wrapper" style="width: 1300px">
+
+		<!-- Navigation -->
+		<?php include "includes/ad_navigation.php" ?>
+
+		<div id="page-wrapper" style="width: 1300px">
+
+			<div class="container-fluid">
+
+      
+      <?php 
+        if(isset($_GET['p_author'])){
+          $post_author = $_GET['p_author'];
+        }else{
+          $post_author = '';
+        }
+      ?>
+
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">
+								All Posts by <span style='color: maroon'><?php echo $post_author; ?></span>
+						</h1>
+					</div>
+				
+
+          <!-- Display all posts table in the admin dashboard area -->
 
 <!-- Checkbox functionality -->
 <?php 
@@ -70,7 +101,6 @@
       <tr>
         <th><input id="selectAllBoxes" type="checkbox"></th>
         <th>Id</th>
-        <th>Author</th>
         <th>Title</th>
         <th>Category</th>
         <th>Status</th>
@@ -86,11 +116,10 @@
     <tbody>
 
       <?php 
-        $query = "SELECT * FROM posts ORDER BY post_id DESC";
+        $query = "SELECT * FROM posts WHERE post_author = '{$post_author}'";
         $select_posts = mysqli_query($connection, $query);
         while($row = mysqli_fetch_assoc($select_posts)){
           $post_id = $row['post_id'];
-          $post_author = $row['post_author'];
           $post_title = $row['post_title'];
           $post_category = $row['post_category'];
           $post_status = $row['post_status'];
@@ -103,7 +132,6 @@
       echo "<tr>";
         echo"<td><input class='checkbox' type='checkbox' name='checkBox[]' value='{$post_id}'></td>";
         echo"<td>$post_id</td>";
-        echo"<td><a href='author_posts.php?p_author=$post_author'>$post_author</a></td>";
         echo"<td><a href='../post.php?p_id={$post_id}'>$post_title</a></td>";
         echo"<td>$post_category</td>";
         ?>
@@ -150,3 +178,25 @@
     header("Location: admin_posts.php");
   }
 ?>
+
+
+				</div> <!-- /.row -->
+				
+			</div>
+			<!-- /.container-fluid -->
+
+		</div>
+		<!-- /#page-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/script.js"></script>
+</body>
+
+</html>

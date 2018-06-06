@@ -20,7 +20,7 @@
 
   if(isset($_POST['update_post'])){
     $post_title = $_POST['title'];
-    $post_author = $_POST['author'];
+    $post_author = $_POST['post_author'];
     // $post_category_id = $_POST['post_category_id'];
     $post_status = $_POST['post_status'];
 
@@ -77,7 +77,7 @@
 
   <div class="form-group">
     <label for="title">Post Title</label>
-    <input type="text" class="form-control" name="title" value="<?php echo $post_title; ?>">
+    <input type="text" class="form-control" name="title" value="<?php echo $post_title; ?>" style="max-width: 400px">
   </div>
 
   <div class="form-group">
@@ -98,9 +98,27 @@
       ?>
   </div>
 
-  <div class="form-group">
-    <label for="author">Post Author</label>
-    <input type="text" class="form-control" name="author" value="<?php echo $post_author; ?>">
+  <div class="form-group" style="width: 150px">
+    <label for="post_author">Post Author</label>
+    <select name="post_author" class="form-control">
+        <!--  Default Author Name -->
+      <option value='<?php $post_author; ?>'><?php echo $post_author; ?></option>
+        <!-- Other Authors options -->
+      <?php 
+        $query = "SELECT * FROM users";
+        $select_user = mysqli_query($connection, $query);
+        confirmQuery($select_user);
+        while($row = mysqli_fetch_assoc($select_user)){
+          $firstName = $row['user_firstname'];
+          $lastName = $row['user_lastname'];
+          $fullName = $firstName . " " . $lastName;
+          if($fullName !== $post_author){
+            echo "<option value='$fullName'>$fullName</option>";
+          }
+        }
+      ?>
+
+    </select>
   </div>
 
   <div class="form-group">
@@ -128,10 +146,10 @@
 
   <div class="form-group">
     <label for="post_tags">Post Tags</label>
-    <input type="text" class="form-control" name="post_tags" value="<?php echo $post_tags; ?>">
+    <input type="text" class="form-control" name="post_tags" value="<?php echo $post_tags; ?>" style="max-width: 400px">
   </div>
 
-  <div class="form-group">
+  <div class="form-group" style="max-width: 700px">
     <label for="post_content">Post Content</label>
     <textarea type="text" class="form-control" name="post_content" id="editor" cols="30" rows="10">
       <?php echo $post_content; ?>
