@@ -22,9 +22,31 @@
                 </h1>
 
                 <?php
-                    $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' 
+
+                //  Pagination system
+                    if(isset($_GET['page'])){
+                    $page = $_GET['page'];
+                    if($page == 1){
+                        $posts_offset = 0;
+                        }else{
+                            $posts_offset = ($page * 5) - 5;
+                        }
+                    }else{
+                        $page = 0;
+                        $posts_offset = 0;
+                    }
+
+
+                    // Detecting how many Published posts we have for Pagination purpose
+                    $posts_count_query = "SELECT * FROM posts WHERE post_category LIKE '%$search%' OR post_tags LIKE '%$search%' OR post_author LIKE '%$search%' ";
+                    $find_count = mysqli_query($connection, $posts_count_query);
+                    $count = mysqli_num_rows($find_count);
+
+                    $count = ceil($count / 5);
+
+                    $query = "SELECT * FROM posts WHERE post_status = 'Published' AND post_tags LIKE '%$search%' 
                                 OR post_category LIKE '%$search%'
-                                OR post_author LIKE '%$search%' ";
+                                OR post_author LIKE '%$search%' ORDER BY post_id DESC LIMIT $posts_offset, 5";
                     $search_query = mysqli_query($connection, $query);
     
                     if(!$search_query){
@@ -79,6 +101,19 @@
                     }
                 }
                 ?>
+
+                <!-- Pager -->
+                <ul class="pager">
+                    <?php
+                        for($i = 1; $i <= $count; $i++){ 
+                            if($i == $page){
+                                echo "<li style='margin-right: 8px'><a href='search.php?page={$i}' class='active_link'>{$i}</a></li>";
+                            }else{
+                                echo "<li style='margin-right: 8px'><a href='search.php?page={$i}'>{$i}</a></li>";
+                            }
+                        }
+                    ?>
+                </ul>
 
 
             </div>
