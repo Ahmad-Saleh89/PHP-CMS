@@ -1,4 +1,11 @@
 <?php
+ 
+    function escape($string){
+        global $connection;
+       return mysqli_real_escape_string($connection, trim($string));
+    }
+ 
+ 
     // Check for errors - function
     function confirmQuery($result) {
         global $connection;
@@ -12,7 +19,7 @@
     function insert_categories(){
         global $connection;
         if(isset($_POST['submit'])){
-            $cat_title = $_POST['cat_title'];
+            $cat_title = escape($_POST['cat_title']);
             if($cat_title == "" || empty($cat_title)){
                 echo "This field should not be empty!";
             }else{
@@ -32,7 +39,7 @@
         global $connection;
         global $cat_id;
         if(isset($_POST['edit'])){
-            $the_cat_title = $_POST['cat_title'];
+            $the_cat_title = escape($_POST['cat_title']);
 
         $query = "UPDATE categories SET cat_title = '{$the_cat_title}' WHERE cat_id = {$cat_id} ";
         $edit_query = mysqli_query($connection, $query);
@@ -46,7 +53,7 @@
     function delete_categrory(){
         global $connection;
         if(isset($_GET['delete'])){
-        $get_cat_id = $_GET['delete'];
+        $get_cat_id = escape($_GET['delete']);
 
         $query = "DELETE FROM categories WHERE cat_id = {$get_cat_id} ";
         $delete_query = mysqli_query($connection, $query);

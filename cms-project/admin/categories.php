@@ -15,8 +15,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Welcome to admin page
-                            <small><?php echo $_SESSION['firstname']; ?></small>
+                            Categories
                         </h1>
                     </div>
 
@@ -38,7 +37,7 @@
                     <?php 
                         // Display the selected category in the Edit Form
                         if(isset($_GET['edit'])){
-                            $cat_id = $_GET['edit'];
+                            $cat_id = escape($_GET['edit']);
                             $query = "SELECT * FROM categories WHERE cat_id = $cat_id";
                             $select_category_id = mysqli_query($connection, $query);
                             $cat_row = mysqli_fetch_assoc($select_category_id);
